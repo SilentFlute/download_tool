@@ -1,0 +1,26 @@
+<html>
+<body>
+<input type="text" id="url" placeholder="播放地址">
+<input type="button" id="play" value="播放" onclick="play()">
+<video-js id=vid1 width=600 height=300 class="vjs-default-skin" controls>
+    <source id="video"
+            src="https://example.com/index.m3u8"
+            type="application/x-mpegURL">
+</video-js>
+<link rel="stylesheet" href="video.css">
+<script src="video.js"></script>
+<script src="videojs-http-streaming.js"></script>
+<script>
+    function play(){
+        var href = window.location.href;
+        var url = document.getElementById("url").value;
+
+        url = href.substring(0, href.lastIndexOf("/")) + "/" + url + "/index.m3u8";
+
+        document.getElementById("video").src=url;
+        var player = videojs('vid1');
+        player.play();
+    }
+</script>
+</body>
+</html>
